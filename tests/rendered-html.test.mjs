@@ -78,12 +78,15 @@ test("hero copy sits directly on the film without a shadow plate", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const messageRule = css.match(/\.home-experience \.arrival-message \{([\s\S]*?)\n\}/)?.[1] ?? "";
   const shadeRule = css.match(/\.home-experience \.hero-film-shade \{([\s\S]*?)\n\}/)?.[1] ?? "";
+  const backdropRule = css.match(/\.hero-video-backdrop \{([\s\S]*?)\n\}/)?.[1] ?? "";
 
   assert.match(messageRule, /background:\s*transparent/i);
   assert.match(messageRule, /box-shadow:\s*none/i);
   assert.match(messageRule, /backdrop-filter:\s*none/i);
   assert.match(messageRule, /border:\s*0/i);
   assert.match(shadeRule, /background:\s*transparent/i);
+  assert.doesNotMatch(backdropRule, /blur\(/i);
+  assert.match(backdropRule, /opacity:\s*1/i);
 });
 
 test("the primary experience is one page with clear anchored navigation", async () => {
