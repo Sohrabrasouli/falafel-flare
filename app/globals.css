@@ -2019,64 +2019,71 @@ body {
   box-shadow: none;
 }
 
-.hero-place-frame,
-.hero-place-frame img,
-.hero-food-window,
-.hero-food-frame {
+.hero-scene-frames,
+.hero-scene-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.hero-place-frame {
+.hero-scene-frames {
   overflow: hidden;
   background: var(--cinema-brown);
 }
 
-.hero-place-frame img {
+.hero-scene-frame {
   object-fit: cover;
-  object-position: center 48%;
-  opacity: 0.58;
-  transform: scale(1.06);
-  animation: place-drift 19s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-.hero-food-window {
-  left: 38%;
-  width: 62%;
-  overflow: hidden;
-  border-left: 1px solid rgba(240, 90, 25, 0.62);
-  background: var(--cinema-brown);
-  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.hero-food-frame {
-  object-fit: cover;
+  object-position: var(--frame-position, center);
   opacity: 0;
-  transform: scale(1.11) translate3d(-1.8%, 0, 0);
-  transition: opacity 1600ms ease, transform 6200ms cubic-bezier(0.2, 0.62, 0.28, 1);
+  transform: scale(1.1);
+  transition: opacity 2200ms cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: opacity, transform;
 }
 
-.hero-food-frame.is-active {
+.hero-scene-frame:nth-child(4n + 1).is-active,
+.hero-scene-frame:nth-child(4n + 1).is-exiting {
+  animation: hero-drift-right 18s ease-in-out infinite alternate;
+}
+
+.hero-scene-frame:nth-child(4n + 2).is-active,
+.hero-scene-frame:nth-child(4n + 2).is-exiting {
+  animation: hero-drift-left 20s ease-in-out infinite alternate;
+}
+
+.hero-scene-frame:nth-child(4n + 3).is-active,
+.hero-scene-frame:nth-child(4n + 3).is-exiting {
+  animation: hero-drift-up 19s ease-in-out infinite alternate;
+}
+
+.hero-scene-frame:nth-child(4n).is-active,
+.hero-scene-frame:nth-child(4n).is-exiting {
+  animation: hero-drift-down 21s ease-in-out infinite alternate;
+}
+
+.hero-scene-frame.is-active {
   z-index: 1;
   opacity: 1;
-  transform: scale(1.02) translate3d(1.2%, -0.4%, 0);
+}
+
+.hero-film.is-paused .hero-scene-frame {
+  animation-play-state: paused;
 }
 
 .hero-frame-label {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   right: 24px;
   bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
   margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
-  background: rgba(10, 8, 7, 0.68);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 8px 12px;
+  background: rgba(10, 8, 7, 0.7);
+  color: rgba(255, 255, 255, 0.88);
+  padding: 9px 13px;
   font-size: 0.62rem;
   font-weight: 850;
   letter-spacing: 0.08em;
@@ -2084,9 +2091,14 @@ body {
   backdrop-filter: blur(14px);
 }
 
+.hero-frame-label span {
+  color: var(--cinema-orange);
+  font-variant-numeric: tabular-nums;
+}
+
 .home-experience .hero-film-shade {
-  z-index: 1;
-  background: rgba(6, 4, 3, 0.08);
+  z-index: 2;
+  background: rgba(6, 4, 3, 0.34);
 }
 
 .home-experience .hero-film-content {
@@ -2171,26 +2183,41 @@ body {
   position: absolute;
   z-index: 6;
   right: 24px;
-  bottom: 72px;
+  bottom: 70px;
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 .frame-progress span {
-  width: 28px;
+  width: 22px;
   height: 2px;
   background: rgba(255, 255, 255, 0.3);
   transition: width 500ms ease, background 500ms ease;
 }
 
 .frame-progress span.is-active {
-  width: 48px;
+  width: 42px;
   background: var(--cinema-orange);
 }
 
-@keyframes place-drift {
-  from { transform: scale(1.06) translate3d(-0.6%, -0.3%, 0); }
-  to { transform: scale(1.12) translate3d(0.8%, 0.4%, 0); }
+@keyframes hero-drift-right {
+  from { transform: scale(1.08) translate3d(-1.8%, -0.3%, 0); }
+  to { transform: scale(1.15) translate3d(1.8%, 0.5%, 0); }
+}
+
+@keyframes hero-drift-left {
+  from { transform: scale(1.14) translate3d(1.7%, 0.4%, 0); }
+  to { transform: scale(1.08) translate3d(-1.5%, -0.4%, 0); }
+}
+
+@keyframes hero-drift-up {
+  from { transform: scale(1.09) translate3d(0, 1.6%, 0); }
+  to { transform: scale(1.15) translate3d(0.5%, -1.6%, 0); }
+}
+
+@keyframes hero-drift-down {
+  from { transform: scale(1.14) translate3d(-0.5%, -1.5%, 0); }
+  to { transform: scale(1.08) translate3d(0.6%, 1.5%, 0); }
 }
 
 .home-experience .category-ribbon {
@@ -2675,29 +2702,14 @@ body {
     max-height: 820px;
   }
 
-  .hero-place-frame img {
-    object-position: center 42%;
-    opacity: 0.54;
-  }
-
-  .hero-food-window {
-    right: 0;
-    bottom: auto;
-    left: 0;
-    width: 100%;
-    height: 48%;
-    border: 0;
-    border-bottom: 1px solid rgba(240, 90, 25, 0.58);
-    clip-path: none;
-  }
-
-  .hero-food-frame {
-    object-position: center 52% !important;
+  .hero-scene-frame {
+    object-position: var(--frame-position-mobile, var(--frame-position, center));
   }
 
   .hero-frame-label {
+    top: 58px;
     right: 12px;
-    bottom: 12px;
+    bottom: auto;
   }
 
   .home-experience .hero-film-content {
@@ -2869,10 +2881,6 @@ body {
     min-height: max(500px, calc(100svh - 70px - 54px));
   }
 
-  .hero-food-window {
-    height: 43%;
-  }
-
   .home-experience .arrival-message {
     padding: 20px;
   }
@@ -3010,7 +3018,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-place-frame img,
+  .hero-scene-frame,
   .home-experience .ribbon-track,
   .place-scene-image,
   .visit-cinema-images img,
@@ -3021,7 +3029,7 @@ body {
     transform: none !important;
   }
 
-  .hero-food-frame {
+  .hero-scene-frame {
     transition: none;
   }
 

@@ -1,75 +1,77 @@
 **Source Visual Truth**
 
 - Path: `/Users/froghsediqi/.codex/generated_images/019fd10c-8976-7b22-889d-196faf573173/exec-7f9485ad-c9a5-4f10-b3d7-e387ef1ddee8.png`
-- Selected concept: option 1, cinematic split glass.
+- Selected concept: option 1, cinematic glass.
+- Latest user correction: the entire hero background must be one slow moving sequence—outside, inside, menu and dishes—rather than a static storefront plus a separate food window.
 - Source pixels: 1487 × 1058. The ideation brief targeted a 1440 × 1024 desktop composition.
 
 **Implementation Evidence**
 
 - Local implementation: `http://localhost:3001/`
-- Static release simulation: `http://localhost:8765/falafel-flare/`
-- Screenshot: `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/final-github-pages-1280x720.png`
+- Screenshot: `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/hero-motion-full-bleed-1280x720.png`
 - Browser viewport: 1280 × 720 CSS pixels.
-- Implementation pixels: 1280 × 720. The browser capture was normalized to CSS size even though the browser reported device pixel ratio 2.
-- State: hydrated GitHub Pages export, home hero, first food frame active, motion running.
-- Normalization: the generated source is a taller desktop art-direction board rather than an exact browser viewport. The comparison therefore used visible proportions, hierarchy, crop, spacing, tokens, and first-screen content rather than a pixel overlay.
+- Implementation pixels: 1280 × 720.
+- State: hydrated local home hero, first scene active, motion running.
+- Normalization: the source is a taller art-direction board rather than an exact browser viewport. The source and implementation were opened together and compared by visible composition, hierarchy, crop, spacing, tokens, typography and first-screen content.
 
 **Full-View Comparison Evidence**
 
-- The implementation preserves the source hierarchy: compact black header, quiet storefront context, dominant real food crop, left-side smoked glass, immediate order and directions actions, verified hours/address, and the moving one-line category rail.
-- The glass occupies the quiet side of the hero and remains under 40% of the desktop width. It does not cover the main food subject.
-- The implementation intentionally makes motion stronger than the still source through three food dissolves, independent image pans, storefront drift, category movement, section reveals, dining-room drift, and the day/night visit dissolve.
-- Every visible food, storefront, interior, and logo asset comes from the supplied restaurant media. No generic stock, generated food, CSS illustration, custom SVG, or placeholder asset is present.
+- The revised hero preserves the source's compact black header, smoked-glass message, immediate order and directions actions, verified hours/address and moving one-line category rail.
+- The split image treatment was intentionally replaced after the user's correction. Each scene now occupies the complete hero background.
+- Eight supplied restaurant scenes dissolve one by one: day storefront, night storefront, dining room, counter/menu board, falafel, mixed platter, pizza and dessert case.
+- Every frame has continuous slow pan/zoom movement. The 2.2-second dissolves and 7.2-second scene timing keep the sequence cinematic rather than frantic.
+- The glass copy stays fixed and readable while imagery changes behind it. A restrained full-frame shade maintains contrast without hiding the restaurant.
+- No video, generic stock, generated food, CSS illustration, custom SVG or placeholder asset is used.
 
 **Focused Region Evidence**
 
-- A separate crop was not required because the 1280 × 720 hero capture keeps the headline, supporting copy, buttons, hours, address, logo, image seam, food subject, motion control, and category rail readable at review scale.
-- The Menu, Choose your way, Our place, and Visit sections were also opened individually in the browser to inspect crop, glass placement, link hierarchy, and section alignment.
+- The menu-board frame was separately captured in the browser. The upper menu remains visible across the frame while the message panel occupies the quieter lower-left area.
+- The dining-room and falafel frames were separately captured to verify full-bleed crops, text contrast and scene labels.
+- A separate static crop was not required because the 1280 × 720 capture keeps the logo, headline, supporting copy, buttons, business details, motion control, scene timeline and category rail readable at review scale.
 
 **Required Fidelity Surfaces**
 
-- Fonts and typography: Avenir/Avenir Next with system fallbacks matches the geometric grotesk intent; large headings retain the compact line height and weight without truncation at the inspected desktop viewport.
-- Spacing and layout rhythm: header, hero and rail fit within one 1280 × 720 first screen; the glass alignment, section split, gutters, and vertical rhythm remain consistent.
-- Colors and visual tokens: near-black, warm cream, flame orange, muted brown, translucent glass, and restrained borders match the selected direction with sufficient contrast.
-- Image quality and asset fidelity: all target subjects use sharp owner-approved source assets with deliberate object positioning. The inferior counter, dessert-case, and takeout images are excluded.
-- Copy and content: language is direct, specific, and non-salesy. Unsupported claims such as halal, authentic, fresh, family-owned, or best are absent.
+- Fonts and typography: Avenir/Avenir Next with system fallbacks preserves the geometric, direct tone. The headline remains compact and untruncated at the inspected viewport.
+- Spacing and layout rhythm: header, full-bleed hero and category rail fit together within the first desktop screen. The glass retains stable alignment across all scenes.
+- Colors and visual tokens: near-black, flame orange, warm cream, muted brown and translucent glass remain faithful to the restaurant identity and selected direction.
+- Image quality and asset fidelity: all scenes use supplied restaurant photography with frame-specific desktop and phone focal points. The real counter/menu and dessert-case photos are included because the corrected brief explicitly asks the hero to show menu and interior details.
+- Copy and content: language remains direct and non-salesy. Unsupported claims such as halal, authentic, fresh, family-owned or best are absent.
 
 **Findings**
 
-- No actionable P0, P1, or P2 findings remain.
-- P3: the active desktop navigation item is not persistent after scrolling. The section headings and sticky header still make orientation clear, so this does not block release.
-- P3 test gap: the in-app browser capture surface remained fixed at 1280 × 720. Tablet and phone layouts were reviewed through the explicit 1100, 820, 540, and 370 pixel CSS compositions and their markup, but do not have separate browser screenshots in this report.
+- No actionable P0, P1 or P2 findings remain.
+- P3 test gap: the in-app browser capture surface is fixed at 1280 × 720, and browser policy rejected a temporary narrow-viewport harness. The 820, 540 and 370 pixel CSS compositions and frame-specific mobile focal points were reviewed in code, but this iteration does not add a separate mobile browser screenshot.
 
 **Comparison History**
 
-1. First implementation review found a P2 first-screen height issue at 1280 × 720 and a P2 logo legibility issue. The hero minimum height was reduced so the header, hero, and moving rail fit together; the supplied logo was reframed to show the real flame mark beside a readable wordmark. The revised browser capture shows both fixes.
-2. First static-release review found a P1 interaction failure: the Vinext export preloaded the client entry but did not execute it, leaving pause/resume and image switching inactive. The Pages preparation step now injects the built client entry module into every exported page. The reloaded static simulation successfully changed Pause motion to Resume motion, scrolled Menu to 78 pixels below the sticky header, loaded every image, and reported no browser errors.
-3. Final comparison found no new P0, P1, or P2 visual or interaction issues.
+1. The earlier split composition was a P1 mismatch with the user's clarified motion requirement. It was replaced with one full-bleed scene stack spanning the complete hero.
+2. The earlier three-image loop was a P1 content mismatch. It was expanded to eight ordered restaurant scenes covering exterior, interior, menu, dishes and desserts.
+3. The first motion implementation allowed the active CSS drift to continue after scene switching was paused. The hero now pauses both scene timing and every image transform, then resumes both together. Browser evidence confirmed that the label and transform matrix remain unchanged after 7.6 seconds while paused.
+4. The final source-and-implementation comparison found no new P0, P1 or P2 visual issues.
 
 **Primary Interactions Tested**
 
-- Pause and resume cinematic motion.
-- Header Menu anchor alignment below the sticky header.
-- Orders.co menu and checkout destination.
-- ezCater destination.
-- Google Maps directions destination.
-- Telephone destination.
-- Static-export hydration and repository-scoped assets.
-- All lazy and eager images loaded after a full-page pass.
-- Browser console errors: none.
+- Eight-scene automatic advance.
+- Slow movement on every full-background frame.
+- Pause holds the active scene and image transform; Resume is displayed correctly.
+- All eight hero images load successfully.
+- Counter/menu-board crop remains legible behind the glass composition.
+- One-page navigation and customer actions remain present.
+- Browser console errors: none from the revised local page.
+- Lint, seven rendered-content tests and the GitHub Pages export test pass.
 
 **Implementation Checklist**
 
-- [x] Match selected split-glass art direction.
+- [x] Replace the split hero with full-background cinematic scenes.
+- [x] Sequence outside, inside, menu, dishes and desserts one by one.
+- [x] Give every frame slow pan/zoom motion and a soft dissolve.
+- [x] Keep the glass copy stable and readable.
+- [x] Preserve pause/resume and reduced-motion behavior.
 - [x] Use only supplied restaurant imagery.
-- [x] Keep one-page navigation and direct customer actions.
-- [x] Fit the first screen at the inspected desktop viewport.
-- [x] Respect reduced-motion preferences.
-- [x] Verify the hydrated GitHub Pages export.
-- [x] Pass lint, route tests, and Pages export tests.
+- [x] Pass lint, route tests and Pages export tests.
 
 **Follow-up Polish**
 
-- Optional: add persistent section highlighting to the desktop navigation after launch analytics show it would help.
+- P3: capture dedicated phone and tablet browser screenshots when the selected browser exposes viewport resizing.
 
 final result: passed

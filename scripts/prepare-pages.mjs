@@ -45,8 +45,6 @@ const supersededMedia = [
   "food/rice-platter.jpg",
   "food/takeout-platter.jpg",
   "food/cinematic/burger.jpg",
-  "food/cinematic/counter.jpg",
-  "food/cinematic/dessert-case.jpg",
   "food/cinematic/plate-hero.jpg",
   "food/cinematic/takeout.jpg",
   "og.png",
