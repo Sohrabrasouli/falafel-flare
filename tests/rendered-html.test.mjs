@@ -56,12 +56,14 @@ test("the one-page experience keeps verified ordering, catering and phone destin
 test("home leads with honest, controllable restaurant motion and an immediate order path", async () => {
   const home = await htmlFor("/");
 
-  assert.match(home, /class="hero-food-window"/i);
+  assert.match(home, /class="hero-scene-frames"/i);
   assert.match(home, /\/food\/cinematic\/storefront\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/mixed-platter\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/storefront-night\.jpg/i);
   assert.match(home, /\/food\/cinematic\/dining-room\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/counter\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/mixed-platter\.jpg/i);
   assert.match(home, /\/food\/cinematic\/pizza\.jpg/i);
-  assert.doesNotMatch(home, /\/food\/cinematic\/counter\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/dessert-case\.jpg/i);
   assert.match(home, />Pause motion</i);
   assert.match(home, /One table\. Different appetites\./i);
   assert.match(home, /Falafel, gyros, kebabs, burgers, pizza and more/i);
