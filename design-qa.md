@@ -75,3 +75,36 @@
 - P3: capture dedicated phone and tablet browser screenshots when the selected browser exposes viewport resizing.
 
 final result: passed
+
+---
+
+## Real-video brightness correction - August 5, 2026
+
+**Observed problem**
+
+- The eight-scene still-image sequence changed slowly and simulated camera movement;
+  it did not satisfy the request for genuine, lively video.
+- The full-frame shade and dark message panel made the imagery feel dim.
+
+**Correction**
+
+- Replaced the simulated still sequence with three real Falafel Flare food clips:
+  mixed platter, burger and gyro wrap.
+- Each clip advances on its own ending, creating a natural two-to-five-second pace.
+- Reduced the global shade and panel opacity, and brightened both the video and its
+  soft full-width backdrop.
+- Excluded the fourth available clip because identifiable customers are visible and
+  no release approval is recorded.
+
+**Verified evidence**
+
+- Three video elements load; the active clip is playing and its time advances.
+- The sequence advanced from clip 01 to clip 02 after clip 01 ended.
+- Pause held playback at the same timestamp; Play resumed playback.
+- A fresh browser load had no console errors and no horizontal overflow.
+- ESLint, production build, seven rendered-content tests, GitHub Pages export and the
+  Pages export test all pass.
+- Comparison image:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/real-motion-public-2026-08-05/03-before-after.png`.
+
+final result: passed for the shareable review concept; final commercial media approval remains open
