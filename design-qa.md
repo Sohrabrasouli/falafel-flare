@@ -379,3 +379,29 @@ final result: passed
 - ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
 
 final result: passed
+
+---
+
+## Faster scene rhythm and connected messages - August 5, 2026
+
+**Authorized change only**
+
+- Scene duration changed from 7.2 seconds to 3.8 seconds.
+- The existing 2.2-second dissolve, imagery, layout, permanent headline, colors,
+  actions, focal points and motion treatment remain unchanged.
+- The small numbered scene labels now extend “One table. Different appetites.” with
+  eight short human thoughts: Come as you are; There's room for you; Settle in
+  together; Everyone gets a choice; Start with falafel; Pass the platter; Pizza
+  belongs here too; Save room for something sweet.
+
+**Evidence**
+
+- Local desktop capture:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/scene-speed-messages-2026-08-05/local-desktop.jpg`
+- Follow-up timed scene:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/scene-speed-messages-2026-08-05/local-desktop-next.jpg`
+- Browser inspection confirms eight images, updated labels, automatic scene advance
+  and no horizontal overflow.
+- ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
+
+final result: passed

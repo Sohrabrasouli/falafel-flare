@@ -56,6 +56,7 @@ test("the one-page experience keeps verified ordering, catering and phone destin
 
 test("home restores the approved full-bleed restaurant sequence and immediate order path", async () => {
   const home = await htmlFor("/");
+  const filmSource = await readFile(new URL("../app/cinematic-film.tsx", import.meta.url), "utf8");
 
   assert.match(home, /class="hero-scene-frames"/i);
   assert.equal((home.match(/class="hero-scene-frame(?:\s|\")/g) ?? []).length, 8);
@@ -73,6 +74,19 @@ test("home restores the approved full-bleed restaurant sequence and immediate or
   assert.doesNotMatch(home, /Come hungry\./i);
   assert.doesNotMatch(home, /Bring the whole table\./i);
   assert.match(home, new RegExp(ORDER_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(filmSource, /const FRAME_DURATION = 3800;/);
+  for (const sceneMessage of [
+    "Come as you are",
+    "There's room for you",
+    "Settle in together",
+    "Everyone gets a choice",
+    "Start with falafel",
+    "Pass the platter",
+    "Pizza belongs here too",
+    "Save room for something sweet",
+  ]) {
+    assert.match(filmSource, new RegExp(sceneMessage, "i"));
+  }
 });
 
 test("hero copy sits directly on the film without a shadow plate", async () => {
