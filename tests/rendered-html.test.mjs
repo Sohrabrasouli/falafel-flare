@@ -56,15 +56,13 @@ test("the one-page experience keeps verified ordering, catering and phone destin
 test("home leads with honest, controllable restaurant motion and an immediate order path", async () => {
   const home = await htmlFor("/");
 
-  assert.match(home, /class="hero-scene-frames"/i);
-  assert.match(home, /\/food\/cinematic\/storefront\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/storefront-night\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/dining-room\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/counter\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/mixed-platter\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/pizza\.jpg/i);
-  assert.match(home, /\/food\/cinematic\/dessert-case\.jpg/i);
-  assert.match(home, />Pause motion</i);
+  assert.match(home, /class="hero-video-scenes"/i);
+  assert.match(home, /<video[^>]*autoplay[^>]*muted[^>]*playsinline/i);
+  assert.match(home, /\/video\/review-clip-01\.mp4/i);
+  assert.match(home, /\/video\/review-clip-02\.mp4/i);
+  assert.match(home, /\/video\/review-clip-03\.mp4/i);
+  assert.doesNotMatch(home, /\/video\/review-clip-04\.mp4/i);
+  assert.match(home, />Pause video</i);
   assert.match(home, /One table\. Different appetites\./i);
   assert.match(home, /Falafel, gyros, kebabs, burgers, pizza and more/i);
   assert.doesNotMatch(home, /Come hungry\./i);

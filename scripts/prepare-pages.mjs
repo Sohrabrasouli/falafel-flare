@@ -37,7 +37,9 @@ for (const path of await htmlFiles(outputRoot)) {
 await writeFile(join(outputRoot, ".nojekyll"), "");
 
 const supersededMedia = [
-  "video",
+  "video/falafel-flare-arrival.mp4",
+  "video/falafel-flare-arrival-mobile.mp4",
+  "video/review-clip-04.mp4",
   "food/burger.jpg",
   "food/falafel-platter.jpg",
   "food/mixed-platter.jpg",

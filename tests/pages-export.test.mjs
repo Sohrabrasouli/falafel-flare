@@ -17,5 +17,9 @@ test("the GitHub Pages export is hydrated and scoped to the repository path", as
   await access(new URL("food/cinematic/mixed-platter.jpg", root));
   await access(new URL("food/cinematic/counter.jpg", root));
   await access(new URL("food/cinematic/dessert-case.jpg", root));
+  await access(new URL("video/review-clip-01.mp4", root));
+  await access(new URL("video/review-clip-02.mp4", root));
+  await access(new URL("video/review-clip-03.mp4", root));
+  await assert.rejects(access(new URL("video/review-clip-04.mp4", root)));
   await assert.rejects(access(new URL("video/falafel-flare-arrival.mp4", root)));
 });

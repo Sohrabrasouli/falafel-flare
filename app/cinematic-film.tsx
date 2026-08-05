@@ -3,70 +3,30 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { assetPath } from "./site-data";
 
-/* eslint-disable @next/next/no-img-element -- owner-approved restaurant photography is sequenced as a still-image film */
-
-const heroFrames = [
+const heroClips = [
   {
-    src: "/food/cinematic/storefront.jpg",
-    position: "center 48%",
-    mobilePosition: "center 44%",
-    label: "The storefront",
+    src: "/video/review-clip-01.mp4",
+    poster: "/food/cinematic/mixed-platter.jpg",
+    label: "Mixed platter",
   },
   {
-    src: "/food/cinematic/storefront-night.jpg",
-    position: "center 50%",
-    mobilePosition: "56% center",
-    label: "Open after dark",
+    src: "/video/review-clip-02.mp4",
+    poster: "/food/cinematic/burger.jpg",
+    label: "Burger",
   },
   {
-    src: "/food/cinematic/dining-room.jpg",
-    position: "center 54%",
-    mobilePosition: "52% center",
-    label: "Inside Falafel Flare",
-  },
-  {
-    src: "/food/cinematic/counter.jpg",
-    position: "center 35%",
-    mobilePosition: "54% 28%",
-    label: "The menu",
-  },
-  {
-    src: "/brand/orders-cover.png",
-    position: "center 50%",
-    mobilePosition: "58% center",
-    label: "Falafel",
-  },
-  {
-    src: "/food/cinematic/mixed-platter.jpg",
-    position: "center 56%",
-    mobilePosition: "center 54%",
-    label: "Mixed platters",
-  },
-  {
-    src: "/food/cinematic/pizza.jpg",
-    position: "center 50%",
-    mobilePosition: "center center",
-    label: "Pizza",
-  },
-  {
-    src: "/food/cinematic/dessert-case.jpg",
-    position: "center 53%",
-    mobilePosition: "center 50%",
-    label: "Something sweet",
+    src: "/video/review-clip-03.mp4",
+    poster: "/food/cinematic/takeout.jpg",
+    label: "Gyro wrap",
   },
 ] as const;
 
-const FRAME_DURATION = 7200;
-
 export function CinematicFilm({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [frameState, setFrameState] = useState<{ active: number; previous: number | null }>({
-    active: 0,
-    previous: null,
-  });
+  const [activeClip, setActiveClip] = useState(0);
+  const clipRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const isPlayingRef = useRef(isPlaying);
   const resumeAfterVisibility = useRef(false);
-  const activeFrame = frameState.active;
 
   useEffect(() => {
     isPlayingRef.current = isPlaying;
@@ -80,15 +40,18 @@ export function CinematicFilm({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!isPlaying) return;
-    const timer = window.setInterval(() => {
-      setFrameState((current) => ({
-        active: (current.active + 1) % heroFrames.length,
-        previous: current.active,
-      }));
-    }, FRAME_DURATION);
-    return () => window.clearInterval(timer);
-  }, [isPlaying]);
+    clipRefs.current.forEach((clip, index) => {
+      if (!clip) return;
+
+      if (index !== activeClip || !isPlaying) {
+        clip.pause();
+        return;
+      }
+
+      clip.currentTime = 0;
+      void clip.play().catch(() => undefined);
+    });
+  }, [activeClip, isPlaying]);
 
   useEffect(() => {
     const onVisibilityChange = () => {
@@ -111,32 +74,37 @@ export function CinematicFilm({ children }: { children: ReactNode }) {
     return () => document.removeEventListener("visibilitychange", onVisibilityChange);
   }, []);
 
+  const advanceClip = (index: number) => {
+    if (!isPlaying || index !== activeClip) return;
+    setActiveClip((current) => (current + 1) % heroClips.length);
+  };
+
   return (
     <div
-      className={`hero-film ${isPlaying ? "is-playing" : "is-paused"}`}
+      className={`hero-film hero-video-film ${isPlaying ? "is-playing" : "is-paused"}`}
       role="img"
-      aria-label="A moving sequence of Falafel Flare's storefront, dining room, menu and dishes"
+      aria-label="A moving sequence of Falafel Flare dishes"
     >
-      <div className="hero-scene-frames" aria-hidden="true">
-        {heroFrames.map((frame, index) => (
-          <img
-            key={frame.src}
-            className={`hero-scene-frame${index === activeFrame ? " is-active" : ""}${
-              index === frameState.previous ? " is-exiting" : ""
-            }`}
-            src={assetPath(frame.src)}
-            alt=""
-            style={
-              {
-                "--frame-position": frame.position,
-                "--frame-position-mobile": frame.mobilePosition,
-              } as CSSProperties
-            }
-            width={index === 0 ? "1800" : "1600"}
-            height={index === 0 ? "1118" : "1200"}
-            loading={index < 3 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "auto"}
-          />
+      <div className="hero-video-scenes" aria-hidden="true">
+        {heroClips.map((clip, index) => (
+          <div
+            className={`hero-video-scene${index === activeClip ? " is-active" : ""}`}
+            key={clip.src}
+            style={{ "--clip-poster": `url(${assetPath(clip.poster)})` } as CSSProperties}
+          >
+            <video
+              ref={(element) => {
+                clipRefs.current[index] = element;
+              }}
+              src={assetPath(clip.src)}
+              poster={assetPath(clip.poster)}
+              autoPlay={index === 0}
+              muted
+              playsInline
+              preload="auto"
+              onEnded={() => advanceClip(index)}
+            />
+          </div>
         ))}
       </div>
 
@@ -149,17 +117,17 @@ export function CinematicFilm({ children }: { children: ReactNode }) {
         onClick={() => setIsPlaying((current) => !current)}
         aria-pressed={!isPlaying}
       >
-        {isPlaying ? "Pause motion" : "Resume motion"}
+        {isPlaying ? "Pause video" : "Play video"}
       </button>
 
       <p className="hero-frame-label" aria-hidden="true">
-        <span>{String(activeFrame + 1).padStart(2, "0")}</span>
-        {heroFrames[activeFrame].label}
+        <span>{String(activeClip + 1).padStart(2, "0")}</span>
+        {heroClips[activeClip].label}
       </p>
 
       <div className="frame-progress" aria-hidden="true">
-        {heroFrames.map((frame, index) => (
-          <span className={index === activeFrame ? "is-active" : ""} key={frame.src} />
+        {heroClips.map((clip, index) => (
+          <span className={index === activeClip ? "is-active" : ""} key={clip.src} />
         ))}
       </div>
     </div>
