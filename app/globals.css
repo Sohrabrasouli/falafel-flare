@@ -2044,7 +2044,7 @@ body {
 .hero-video-scene::before {
   background: var(--clip-poster) center / cover no-repeat;
   content: "";
-  filter: blur(24px) brightness(1.24) saturate(1.16);
+  filter: blur(28px) brightness(1.34) saturate(1.12);
   transform: scale(1.09);
 }
 
@@ -2052,8 +2052,8 @@ body {
   z-index: 1;
   display: block;
   object-fit: contain;
-  object-position: 82% center;
-  filter: brightness(1.16) saturate(1.12) contrast(0.98);
+  object-position: 76% center;
+  filter: brightness(1.24) saturate(1.08) contrast(0.96);
 }
 
 .hero-video-scene.is-active {
@@ -2090,24 +2090,28 @@ body {
 .home-experience .hero-film-shade {
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(6, 4, 3, 0.24), rgba(6, 4, 3, 0.08) 56%, transparent),
-    linear-gradient(0deg, rgba(6, 4, 3, 0.12), transparent 44%);
+    linear-gradient(90deg, rgba(6, 4, 3, 0.12), rgba(6, 4, 3, 0.03) 44%, transparent 66%),
+    linear-gradient(0deg, rgba(6, 4, 3, 0.08), transparent 38%);
 }
 
 .home-experience .hero-film-content {
   z-index: 4;
   align-items: center;
-  padding: clamp(34px, 5vw, 78px);
+  padding: clamp(28px, 4vw, 62px);
 }
 
 .home-experience .arrival-message {
-  width: min(510px, 39vw);
-  border-color: rgba(255, 255, 255, 0.2);
-  border-radius: 18px;
-  background: rgba(12, 8, 6, 0.68);
-  padding: clamp(26px, 3.1vw, 44px);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
-  backdrop-filter: blur(28px) saturate(126%);
+  width: min(430px, 34vw);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035)),
+    rgba(15, 9, 6, 0.28);
+  padding: clamp(22px, 2.45vw, 34px);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px) saturate(112%);
 }
 
 .home-experience .arrival-message::before {
@@ -2125,17 +2129,17 @@ body {
 }
 
 .home-experience .arrival-message h1 {
-  max-width: 440px;
-  font-size: clamp(2.55rem, 3.7vw, 4.55rem);
+  max-width: 360px;
+  font-size: clamp(2.15rem, 3vw, 3.45rem);
   font-weight: 790;
-  letter-spacing: -0.064em;
-  line-height: 0.92;
+  letter-spacing: -0.052em;
+  line-height: 0.96;
 }
 
 .home-experience .arrival-lede {
-  max-width: 410px;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: clamp(0.94rem, 1.12vw, 1.08rem);
+  max-width: 350px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(0.84rem, 0.95vw, 0.98rem);
 }
 
 .home-experience .arrival-message .button-row {
@@ -2143,13 +2147,14 @@ body {
 }
 
 .home-experience .arrival-message .button {
-  min-height: 48px;
-  padding-inline: clamp(16px, 1.8vw, 23px);
+  min-height: 44px;
+  padding-inline: clamp(14px, 1.45vw, 20px);
+  font-size: 0.73rem;
 }
 
 .home-experience .arrival-message .trust-line {
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.68rem;
 }
 
 .motion-control {
@@ -2640,7 +2645,7 @@ body {
   }
 
   .home-experience .arrival-message {
-    width: min(490px, 46vw);
+    width: min(400px, 40vw);
   }
 
   .menu-story {
@@ -2696,9 +2701,9 @@ body {
   }
 
   .hero-video-scene video {
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
-    filter: brightness(1.2) saturate(1.12) contrast(0.98);
+    filter: brightness(1.26) saturate(1.08) contrast(0.96);
   }
 
   .hero-frame-label {
@@ -2709,33 +2714,43 @@ body {
 
   .home-experience .hero-film-content {
     align-items: flex-end;
-    padding: 14px;
+    padding: 14px 14px 20px;
   }
 
   .home-experience .arrival-message {
-    width: 100%;
-    max-width: 610px;
-    border-radius: 16px;
-    padding: 24px;
+    width: min(292px, calc(100% - 42px));
+    max-width: none;
+    border-radius: 18px;
+    margin-right: auto;
+    padding: 15px 17px 16px;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.025)),
+      rgba(15, 9, 6, 0.14);
+    box-shadow:
+      0 18px 52px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(4px) saturate(106%);
   }
 
   .home-experience .arrival-message h1 {
-    max-width: 500px;
-    font-size: clamp(2.35rem, 8.6vw, 4.2rem);
+    max-width: 250px;
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.44);
   }
 
   .home-experience .arrival-lede {
-    max-width: 500px;
+    max-width: 250px;
+    margin-top: 10px;
+    font-size: 0.76rem;
+    line-height: 1.36;
   }
 
   .home-experience .arrival-message .button-row {
-    width: auto;
-    align-items: center;
-    flex-direction: row;
+    display: none;
   }
 
-  .home-experience .arrival-message .button-row .button {
-    width: auto;
+  .home-experience .arrival-message .trust-line {
+    display: none;
   }
 
   .motion-control {
@@ -2877,42 +2892,19 @@ body {
   }
 
   .home-experience .arrival-message {
-    padding: 20px;
+    padding: 14px 16px 15px;
   }
 
   .home-experience .arrival-message h1 {
-    max-width: 340px;
-    font-size: clamp(2rem, 11vw, 3.3rem);
-    line-height: 0.92;
+    max-width: 245px;
+    font-size: clamp(1.8rem, 8.4vw, 2.25rem);
+    line-height: 0.96;
   }
 
   .home-experience .arrival-lede {
-    max-width: 340px;
-    margin-top: 12px;
-    font-size: 0.88rem;
-    line-height: 1.42;
-  }
-
-  .home-experience .arrival-message .button-row {
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .home-experience .arrival-message .button {
-    min-height: 44px;
-    padding: 10px 14px;
-    font-size: 0.72rem;
-  }
-
-  .home-experience .arrival-message .trust-line {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 2px 12px;
-    margin-top: 16px;
-  }
-
-  .home-experience .arrival-message .trust-line span:last-child {
-    grid-column: 1 / -1;
+    max-width: 245px;
+    margin-top: 9px;
+    font-size: 0.74rem;
   }
 
   .menu-story-image {
