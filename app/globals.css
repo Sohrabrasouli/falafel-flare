@@ -2057,9 +2057,9 @@ body {
   z-index: 1;
   object-fit: cover;
   object-position: center;
-  opacity: 0.88;
-  filter: blur(10px) brightness(1.18) saturate(1.12) contrast(0.96);
-  transform: scale(1.045);
+  opacity: 1;
+  filter: brightness(1.04) saturate(1.05) contrast(1.01);
+  transform: scale(1.01);
 }
 
 .hero-video-main {
@@ -2709,8 +2709,8 @@ body {
   }
 
   .hero-video-backdrop {
-    filter: blur(9px) brightness(1.2) saturate(1.1) contrast(0.96);
-    transform: scale(1.05);
+    filter: brightness(1.04) saturate(1.05) contrast(1.01);
+    transform: scale(1.01);
   }
 
   .hero-frame-label {

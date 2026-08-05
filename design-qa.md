@@ -312,3 +312,30 @@ final result: passed
   the absence of the message plate. The GitHub Pages export and export test pass.
 
 final result: passed
+
+---
+
+## Clear full-width motion correction - August 5, 2026
+
+**Observed problem**
+
+- Sohrab's latest desktop screenshot showed two separate effects: an older cached
+  glass plate and a deliberately blurred full-width support layer. Even after the
+  plate was removed, that support layer could still make half the hero look shadowed.
+
+**Correction**
+
+- The full-width moving layer is now opaque and clear: no blur and no softening scale.
+- Only restrained brightness, saturation and contrast adjustments remain. The sharp
+  complete vertical video still plays above it, preserving the full available frame.
+- The copy remains directly on the film with no plate, border, shadow or shade.
+
+**Evidence**
+
+- Local clear-motion capture, 1280 x 720:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/06-local-clear-full-motion.jpg`
+- Computed styles confirm opacity `1` and no `blur()` on the full-width video.
+- Desktop overflow is absent and both active video layers continue playing.
+- ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
+
+final result: passed
