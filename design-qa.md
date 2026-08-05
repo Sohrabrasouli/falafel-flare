@@ -108,3 +108,88 @@ final result: passed
   `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/real-motion-public-2026-08-05/03-before-after.png`.
 
 final result: passed for the shareable review concept; final commercial media approval remains open
+
+---
+
+## Crystal-glass, full-frame correction - August 5, 2026
+
+**Source visual truth**
+
+- Layout reference:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/hero-motion-full-bleed-1280x720.png`
+- User correction: preserve the clear glass message cluster, make the background
+  visibly clear, and show the entire video frame instead of cropping it into a close-up.
+- Before-state capture:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/crystal-glass-correction-2026-08-05/01-before-mobile.png`
+
+**Implementation evidence**
+
+- Desktop capture:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/crystal-glass-correction-2026-08-05/03-after-desktop-crystal-glass.png`
+- Mobile capture:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/crystal-glass-correction-2026-08-05/02-after-mobile-crystal-glass.png`
+- Desktop viewport and pixels: 1280 x 720 CSS pixels, 1280 x 720 capture.
+- Mobile viewport and pixels: 419 x 643 CSS pixels, 419 x 643 capture,
+  device scale reported as 2.4 by the in-app surface.
+- State: hydrated home hero, real video playing, first clip visible.
+
+**Full-view comparison evidence**
+
+- Combined reference and implementation:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/crystal-glass-correction-2026-08-05/05-reference-implementation-desktop.jpg`
+- The reference's left-side glass cluster and unobstructed scene hierarchy are
+  preserved. The revised cluster is smaller, lighter and more transparent.
+- The vertical source video is displayed with `object-fit: contain`; its complete
+  frame is visible. A bright, softly blurred version of the approved poster fills
+  unused horizontal space instead of stretching or cropping the footage.
+
+**Focused-region comparison evidence**
+
+- Combined mobile before and after:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/crystal-glass-correction-2026-08-05/04-before-after-mobile.jpg`
+- Before: the opaque 388-pixel-wide message card occupied most of the visible food
+  scene and the video used `cover`, cropping the vertical frame.
+- After: the 292-pixel-wide crystal-glass cluster is approximately 216 pixels tall,
+  the mobile action buttons remain in the fixed dock, and the full video frame stays
+  visible around and through the message.
+
+**Required fidelity surfaces**
+
+- Fonts and typography: the established Avenir family is unchanged. The headline
+  scale is reduced only inside the hero so the glass cluster does not dominate.
+- Spacing and layout rhythm: desktop content remains on the blurred left field while
+  the complete video sits clear of it; mobile content is compact and bottom-left.
+- Colors and visual tokens: Falafel Flare black, cream and flame orange are unchanged.
+  Glass opacity, blur and global shade were reduced to reveal the footage.
+- Image quality: no source video is stretched or cropped; brightness is increased
+  without replacing the restaurant footage.
+- Copy and content: the approved message and verified menu statement are unchanged.
+  Mobile ordering and directions remain immediately available in the action dock.
+
+**Comparison history**
+
+1. P1: the prior mobile card covered most of the food scene. Fixed by removing its
+   duplicated mobile actions and business-detail line, reducing its width and type,
+   and converting the surface to low-opacity crystal glass.
+2. P1: `object-fit: cover` cropped the mobile video. Fixed with `contain`, centered
+   framing and a bright poster-derived backdrop that fills the remaining space.
+3. P2: the former global shade and panel made the footage dim. Both were reduced;
+   the video and backdrop were brightened and visually rechecked.
+
+**Primary interactions tested**
+
+- Three real videos load and play.
+- Clip 01 advances to clip 02.
+- Pause freezes the exact timestamp; Play resumes.
+- No horizontal overflow at 1280 x 720 or 419 x 643.
+- Fresh browser console: zero error-level messages.
+- ESLint, production build, seven route/content tests, GitHub Pages export and the
+  export test all pass.
+
+**Follow-up polish**
+
+- P3: replace the temporary vertical review clips with owner-approved horizontal and
+  vertical masters when the restaurant provides them. The current contain treatment
+  intentionally preserves every source pixel.
+
+final result: passed
