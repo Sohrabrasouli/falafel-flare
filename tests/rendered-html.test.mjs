@@ -57,6 +57,9 @@ test("home leads with honest, controllable restaurant motion and an immediate or
   const home = await htmlFor("/");
 
   assert.match(home, /class="hero-video-scenes"/i);
+  assert.match(home, /class="hero-video-backdrop"/i);
+  assert.match(home, /class="hero-video-main"/i);
+  assert.equal((home.match(/<video\b/gi) ?? []).length, 6);
   assert.match(home, /<video[^>]*autoplay[^>]*muted[^>]*playsinline/i);
   assert.match(home, /\/video\/review-clip-01\.mp4/i);
   assert.match(home, /\/video\/review-clip-02\.mp4/i);
