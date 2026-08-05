@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const ROUTES = ["/"];
@@ -71,6 +72,18 @@ test("home leads with honest, controllable restaurant motion and an immediate or
   assert.doesNotMatch(home, /Come hungry\./i);
   assert.doesNotMatch(home, /Bring the whole table\./i);
   assert.match(home, new RegExp(ORDER_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+});
+
+test("hero copy sits directly on the film without a shadow plate", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const messageRule = css.match(/\.home-experience \.arrival-message \{([\s\S]*?)\n\}/)?.[1] ?? "";
+  const shadeRule = css.match(/\.home-experience \.hero-film-shade \{([\s\S]*?)\n\}/)?.[1] ?? "";
+
+  assert.match(messageRule, /background:\s*transparent/i);
+  assert.match(messageRule, /box-shadow:\s*none/i);
+  assert.match(messageRule, /backdrop-filter:\s*none/i);
+  assert.match(messageRule, /border:\s*0/i);
+  assert.match(shadeRule, /background:\s*transparent/i);
 });
 
 test("the primary experience is one page with clear anchored navigation", async () => {

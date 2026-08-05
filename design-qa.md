@@ -273,3 +273,42 @@ final result: passed for the shareable review concept; final commercial media ap
   intentionally preserves every source pixel.
 
 final result: passed
+
+---
+
+## Shadow-plate removal - August 5, 2026
+
+**Source visual truth**
+
+- Sohrab's desktop evidence showed that the translucent message plate still read as a
+  dark shadow and visually divided the food image.
+- User evidence:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/01-before-user-desktop.png`
+
+**Implementation evidence**
+
+- Desktop after, 1280 x 720, clip 01 playing:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/02-after-desktop-no-plate.jpg`
+- Mobile after, 390 x 844:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/03-after-mobile-no-plate.jpg`
+- Same-viewport, same-clip desktop comparison:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/04-before-after-desktop.jpg`
+
+**Visible correction**
+
+- The message container now has no background, border, radius, box shadow, inset
+  highlight, blur or saturation filter.
+- Its orange divider and the full-frame shade were removed as well. The words and
+  actions sit directly on the moving picture instead of inside a separate plate.
+- The sharp `contain` video and synchronized full-width moving backdrop remain intact.
+- Desktop and phone have no horizontal overflow. The active foreground and background
+  videos were playing in sync during inspection.
+
+**Verification**
+
+- Computed browser styles confirm a transparent background, `box-shadow: none`,
+  `backdrop-filter: none`, zero border and a transparent full-frame shade.
+- ESLint, production build and 8/8 content tests pass with a new regression test for
+  the absence of the message plate. The GitHub Pages export and export test pass.
+
+final result: passed
