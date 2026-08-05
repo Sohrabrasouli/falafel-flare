@@ -76,8 +76,6 @@
 
 final result: passed
 
----
-
 ## Full-width desktop motion correction - August 5, 2026
 
 **Source visual truth**
@@ -336,6 +334,48 @@ final result: passed
   `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/shadow-plate-removal-2026-08-05/06-local-clear-full-motion.jpg`
 - Computed styles confirm opacity `1` and no `blur()` on the full-width video.
 - Desktop overflow is absent and both active video layers continue playing.
+- ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
+
+final result: passed
+
+---
+
+## First approved desktop direction restored - August 5, 2026
+
+**Observed regression**
+
+- The rejected public desktop combined a zoomed full-width copy of each portrait clip
+  with a second sharp portrait strip. That created visible seams, duplicated imagery
+  and a phone-shaped focal area in the middle of a desktop screen.
+- User evidence:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/first-direction-restoration-2026-08-05/01-current-desktop-failure.png`
+- The exact first approved direction was recovered from the earlier build checkpoint:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/first-direction-restoration-2026-08-05/02-first-approved-direction.png`
+
+**Restoration**
+
+- Restored the original eight-scene full-bleed sequence: storefront, storefront at
+  night, dining room, counter and menu, falafel, mixed platters, pizza and dessert.
+- Every scene is one sharp desktop image with its own focal point. There is no
+  duplicate background, center phone strip, blur or seam.
+- The later approved copy correction remains: the message sits directly on the image
+  with no glass plate, shadow, border, blur or full-frame shade.
+
+**Visual evidence**
+
+- Restored desktop, 1280 x 720:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/first-direction-restoration-2026-08-05/03-restored-local-desktop.jpg`
+- All eight restored desktop scenes:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/first-direction-restoration-2026-08-05/04-restored-eight-scene-contact-sheet.jpg`
+- Real phone width, 390 x 844:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/first-direction-restoration-2026-08-05/05-restored-mobile.jpg`
+
+**Verification**
+
+- All eight image files loaded and advanced in the approved order in the browser.
+- Desktop and phone both have zero horizontal overflow.
+- Computed styles confirm a transparent message, no box shadow, no backdrop blur,
+  zero border and no image blur.
 - ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
 
 final result: passed

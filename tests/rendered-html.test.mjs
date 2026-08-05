@@ -54,19 +54,20 @@ test("the one-page experience keeps verified ordering, catering and phone destin
   assert.match(home, new RegExp(PHONE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
-test("home leads with honest, controllable restaurant motion and an immediate order path", async () => {
+test("home restores the approved full-bleed restaurant sequence and immediate order path", async () => {
   const home = await htmlFor("/");
 
-  assert.match(home, /class="hero-video-scenes"/i);
-  assert.match(home, /class="hero-video-backdrop"/i);
-  assert.match(home, /class="hero-video-main"/i);
-  assert.equal((home.match(/<video\b/gi) ?? []).length, 6);
-  assert.match(home, /<video[^>]*autoplay[^>]*muted[^>]*playsinline/i);
-  assert.match(home, /\/video\/review-clip-01\.mp4/i);
-  assert.match(home, /\/video\/review-clip-02\.mp4/i);
-  assert.match(home, /\/video\/review-clip-03\.mp4/i);
-  assert.doesNotMatch(home, /\/video\/review-clip-04\.mp4/i);
-  assert.match(home, />Pause video</i);
+  assert.match(home, /class="hero-scene-frames"/i);
+  assert.equal((home.match(/class="hero-scene-frame(?:\s|\")/g) ?? []).length, 8);
+  assert.match(home, /\/food\/cinematic\/storefront\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/storefront-night\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/dining-room\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/counter\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/mixed-platter\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/pizza\.jpg/i);
+  assert.match(home, /\/food\/cinematic\/dessert-case\.jpg/i);
+  assert.doesNotMatch(home, /\/video\/review-clip-/i);
+  assert.match(home, />Pause motion</i);
   assert.match(home, /One table\. Different appetites\./i);
   assert.match(home, /Falafel, gyros, kebabs, burgers, pizza and more/i);
   assert.doesNotMatch(home, /Come hungry\./i);
@@ -78,15 +79,16 @@ test("hero copy sits directly on the film without a shadow plate", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const messageRule = css.match(/\.home-experience \.arrival-message \{([\s\S]*?)\n\}/)?.[1] ?? "";
   const shadeRule = css.match(/\.home-experience \.hero-film-shade \{([\s\S]*?)\n\}/)?.[1] ?? "";
-  const backdropRule = css.match(/\.hero-video-backdrop \{([\s\S]*?)\n\}/)?.[1] ?? "";
+  const frameRules = [...css.matchAll(/\.hero-scene-frame \{([\s\S]*?)\n\}/g)].map((match) => match[1]);
+  const frameRule = frameRules.find((rule) => /object-fit:/i.test(rule)) ?? "";
 
   assert.match(messageRule, /background:\s*transparent/i);
   assert.match(messageRule, /box-shadow:\s*none/i);
   assert.match(messageRule, /backdrop-filter:\s*none/i);
   assert.match(messageRule, /border:\s*0/i);
   assert.match(shadeRule, /background:\s*transparent/i);
-  assert.doesNotMatch(backdropRule, /blur\(/i);
-  assert.match(backdropRule, /opacity:\s*1/i);
+  assert.match(frameRule, /object-fit:\s*cover/i);
+  assert.doesNotMatch(frameRule, /blur\(/i);
 });
 
 test("the primary experience is one page with clear anchored navigation", async () => {
