@@ -24,7 +24,9 @@ const heroClips = [
 export function CinematicFilm({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [activeClip, setActiveClip] = useState(0);
-  const clipRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const clipRefs = useRef<
+    Array<{ backdrop: HTMLVideoElement | null; main: HTMLVideoElement | null }>
+  >([]);
   const isPlayingRef = useRef(isPlaying);
   const resumeAfterVisibility = useRef(false);
 
@@ -42,14 +44,19 @@ export function CinematicFilm({ children }: { children: ReactNode }) {
   useEffect(() => {
     clipRefs.current.forEach((clip, index) => {
       if (!clip) return;
+      const elements = [clip.backdrop, clip.main].filter(
+        (element): element is HTMLVideoElement => Boolean(element),
+      );
 
       if (index !== activeClip || !isPlaying) {
-        clip.pause();
+        elements.forEach((element) => element.pause());
         return;
       }
 
-      clip.currentTime = 0;
-      void clip.play().catch(() => undefined);
+      elements.forEach((element) => {
+        element.currentTime = 0;
+        void element.play().catch(() => undefined);
+      });
     });
   }, [activeClip, isPlaying]);
 
@@ -93,8 +100,27 @@ export function CinematicFilm({ children }: { children: ReactNode }) {
             style={{ "--clip-poster": `url(${assetPath(clip.poster)})` } as CSSProperties}
           >
             <video
+              className="hero-video-backdrop"
               ref={(element) => {
-                clipRefs.current[index] = element;
+                clipRefs.current[index] = {
+                  backdrop: element,
+                  main: clipRefs.current[index]?.main ?? null,
+                };
+              }}
+              src={assetPath(clip.src)}
+              poster={assetPath(clip.poster)}
+              autoPlay={index === 0}
+              muted
+              playsInline
+              preload="auto"
+            />
+            <video
+              className="hero-video-main"
+              ref={(element) => {
+                clipRefs.current[index] = {
+                  backdrop: clipRefs.current[index]?.backdrop ?? null,
+                  main: element,
+                };
               }}
               src={assetPath(clip.src)}
               poster={assetPath(clip.poster)}

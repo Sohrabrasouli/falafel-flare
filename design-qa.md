@@ -78,6 +78,86 @@ final result: passed
 
 ---
 
+## Full-width desktop motion correction - August 5, 2026
+
+**Source visual truth**
+
+- Exact user-supplied desktop screenshot:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/desktop-full-motion-correction-2026-08-05/01-user-desktop-evidence.png`
+- Source pixels: 2872 x 1588. The screenshot shows the public site with the third
+  vertical clip active, a narrow center-right video and large empty brown fields.
+- User intent: preserve the complete video, make the entire hero feel alive, keep the
+  glass message integrated with the scene and eliminate the dead desktop background.
+
+**Implementation evidence**
+
+- Desktop implementation:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/desktop-full-motion-correction-2026-08-05/02-after-desktop-full-motion.jpg`
+- Mobile implementation:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/desktop-full-motion-correction-2026-08-05/03-after-mobile-full-motion.jpg`
+- Desktop viewport and capture: 1280 x 720 CSS pixels, 1280 x 720 pixels, DPR 1.
+- Mobile viewport and capture: 419 x 643 CSS pixels, 419 x 643 pixels, DPR 1.
+- State: hydrated hero, first clip playing in synchronized background and foreground
+  layers.
+
+**Full-view comparison evidence**
+
+- Same-input comparison:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/desktop-full-motion-correction-2026-08-05/04-desktop-before-after.jpg`
+- The before state isolates the food in a narrow phone-video strip and leaves most of
+  the hero as solid brown. The corrected state uses the same moving footage across the
+  entire background while retaining one sharp, uncropped foreground frame.
+- The glass cluster now sits on the moving food field instead of an unrelated solid
+  panel. It is narrower, more transparent and uses less blur.
+
+**Focused-region comparison evidence**
+
+- The full-view comparison is sufficient for this correction because the defect is
+  the hero's large-region proportion and background treatment. The headline, buttons,
+  address line, motion control and clip label are readable at comparison scale.
+
+**Required fidelity surfaces**
+
+- Fonts and typography: established Avenir family, weights and hierarchy remain
+  unchanged; the hero headline is slightly smaller to keep the glass subordinate.
+- Spacing and layout rhythm: the sharp video remains complete and clear of the message;
+  background motion fills both former dead columns.
+- Colors and visual tokens: Falafel Flare orange, black and cream remain unchanged.
+  The moving background supplies real food color instead of a flat invented fill.
+- Image quality: both visible layers use the same real source video. The background is
+  intentionally softened; the foreground is sharp and uses `contain` with no crop.
+- Copy and content: no wording, verified business fact or customer action changed.
+
+**Comparison history**
+
+1. P1: desktop displayed two enormous brown fields around a narrow phone video. Fixed
+   by synchronizing a full-width `cover` layer behind the complete `contain` layer.
+2. P1: using only `cover` would have repeated the original crop problem. The sharp
+   foreground remains `contain`, so the source frame is preserved in full.
+3. P2: the glass message felt separate from the food and too heavy. Its maximum width,
+   fill opacity and backdrop blur were reduced and visually rechecked.
+4. P2: an initial 18-pixel background blur read as an abstract wash. It was reduced to
+   10 pixels on desktop and 9 pixels on phones, keeping movement and food color visible.
+
+**Primary interactions verified before publication**
+
+- Both layers stayed within 0.003 seconds through the clip-01 to clip-02 change.
+- Pause froze both timestamps; Play resumed both within 0.001 seconds.
+- Phone at 419 x 643 and desktop at 1280 x 720 have no horizontal overflow.
+- ESLint, production build, 7/7 route/content tests, GitHub Pages export and the
+  export test pass.
+- A fresh browser console has zero error-level messages.
+
+**Follow-up polish**
+
+- P3: owner-supplied horizontal footage would eventually replace the softened fill.
+  Until then, this dual-layer treatment preserves the complete available footage and
+  avoids false or stock material.
+
+final result: passed
+
+---
+
 ## Real-video brightness correction - August 5, 2026
 
 **Observed problem**
