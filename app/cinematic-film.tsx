@@ -10,53 +10,53 @@ const heroFrames = [
     src: "/food/cinematic/storefront.jpg",
     position: "center 48%",
     mobilePosition: "center 44%",
-    label: "The storefront",
+    label: "Come as you are",
   },
   {
     src: "/food/cinematic/storefront-night.jpg",
     position: "center 50%",
     mobilePosition: "56% center",
-    label: "Open after dark",
+    label: "There's room for you",
   },
   {
     src: "/food/cinematic/dining-room.jpg",
     position: "center 54%",
     mobilePosition: "52% center",
-    label: "Inside Falafel Flare",
+    label: "Settle in together",
   },
   {
     src: "/food/cinematic/counter.jpg",
     position: "center 35%",
     mobilePosition: "54% 28%",
-    label: "The menu",
+    label: "Everyone gets a choice",
   },
   {
     src: "/brand/orders-cover.png",
     position: "center 50%",
     mobilePosition: "58% center",
-    label: "Falafel",
+    label: "Start with falafel",
   },
   {
     src: "/food/cinematic/mixed-platter.jpg",
     position: "center 56%",
     mobilePosition: "center 54%",
-    label: "Mixed platters",
+    label: "Pass the platter",
   },
   {
     src: "/food/cinematic/pizza.jpg",
     position: "center 50%",
     mobilePosition: "center center",
-    label: "Pizza",
+    label: "Pizza belongs here too",
   },
   {
     src: "/food/cinematic/dessert-case.jpg",
     position: "center 53%",
     mobilePosition: "center 50%",
-    label: "Something sweet",
+    label: "Save room for something sweet",
   },
 ] as const;
 
-const FRAME_DURATION = 7200;
+const FRAME_DURATION = 3800;
 
 export function CinematicFilm({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(true);
