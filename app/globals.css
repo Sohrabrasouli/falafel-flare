@@ -1957,6 +1957,44 @@ body {
   padding-inline: 22px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-address {
+  display: grid;
+  justify-items: end;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.05;
+  text-align: right;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-address span {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.025em;
+}
+
+.header-address small {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-address:hover,
+.header-address:focus-visible,
+.header-address:hover small,
+.header-address:focus-visible small {
+  color: white;
+}
+
 .button-primary {
   background: var(--cinema-orange);
 }
@@ -2668,6 +2706,10 @@ body {
 
   body {
     padding-bottom: 62px;
+  }
+
+  .header-actions {
+    display: none;
   }
 
   .header-inner {

@@ -405,3 +405,30 @@ final result: passed
 - ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
 
 final result: passed
+
+---
+
+## Header address placement - August 5, 2026
+
+**Scoped change**
+
+- Added the verified address to the top-right desktop header immediately before the
+  Order online button: 22648 Mission Blvd, Hayward, CA 94541.
+- The address is a working directions link using the existing verified Google Maps
+  destination. No navigation, hero, imagery, timing or copy was otherwise changed.
+- At phone width the address and desktop order group are hidden, preserving the
+  existing compact logo and Menu header.
+
+**Evidence**
+
+- Before desktop:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/header-address-2026-08-05/before.jpg`
+- Corrected desktop:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/header-address-2026-08-05/after-desktop.jpg`
+- Corrected 390 x 844 phone:
+  `/Users/froghsediqi/Desktop/AI Studio/Client - Falafel Flare/06_QA/header-address-2026-08-05/after-mobile-fixed.jpg`
+- Browser inspection confirms the address target, top-right placement, hidden phone
+  group and zero horizontal overflow on desktop and phone.
+- ESLint, production build, 8/8 content tests, GitHub Pages export and export test pass.
+
+final result: passed

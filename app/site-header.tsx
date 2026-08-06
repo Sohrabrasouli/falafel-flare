@@ -23,6 +23,16 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="header-actions">
+          <a
+            className="header-address"
+            href={LINKS.directions}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get directions to Falafel Flare at 22648 Mission Boulevard in Hayward"
+          >
+            <span>22648 Mission Blvd</span>
+            <small>Hayward, CA 94541</small>
+          </a>
           <a className="button button-primary" href={LINKS.order} target="_blank" rel="noopener noreferrer">
             Order online
           </a>
