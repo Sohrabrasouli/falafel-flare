@@ -6,6 +6,7 @@ const ROUTES = ["/"];
 const ORDER_URL = "https://food.orders.co/72lrn1wd/menu";
 const CATERING_URL = "https://www.ezcater.com/catering/falafel-flare-hayward-3";
 const PHONE_URL = "tel:+15103305000";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=22648+Mission+Blvd+Hayward+CA+94541";
 
 async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -48,10 +49,14 @@ test("all public routes render with one clear page heading and release-ready con
 
 test("the one-page experience keeps verified ordering, catering and phone destinations", async () => {
   const home = await htmlFor("/");
+  const normalizedHome = home.replaceAll("&amp;", "&");
 
   assert.match(home, new RegExp(ORDER_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.match(home, new RegExp(CATERING_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.match(home, new RegExp(PHONE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(home, /22648 Mission Blvd/i);
+  assert.match(home, /Hayward, CA 94541/i);
+  assert.match(normalizedHome, new RegExp(DIRECTIONS_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
 test("home restores the approved full-bleed restaurant sequence and immediate order path", async () => {
